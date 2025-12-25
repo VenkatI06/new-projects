@@ -1,0 +1,64 @@
+import java.util.Scanner;
+public class BinarySearchDictionary {
+    static String[] words = {
+            "algorithm",
+            "array",
+            "binary",
+            "class",
+            "compiler",
+            "data",
+            "function",
+            "hashmap",
+            "inheritance",
+            "java",
+            "loop",
+            "object",
+            "stack",
+            "string",
+            "variable"
+    };
+    static String[] meanings = {
+            "A step-by-step procedure for solving a problem.",
+            "A collection of elements stored at contiguous memory locations.",
+            "A number system using base 2.",
+            "A blueprint for creating objects.",
+            "A program that translates source code into executable code.",
+            "Facts or information collected for analysis.",
+            "A block of code that performs a specific task.",
+            "A data structure that stores key-value pairs.",
+            "A mechanism where one class acquires properties of another.",
+            "A high-level, object-oriented programming language.",
+            "A control structure for repeating tasks.",
+            "An instance of a class.",
+            "A linear data structure following LIFO principle.",
+            "A sequence of characters.",
+            "A named memory location used to store data."
+    };
+    public static int binarySearch(String[] arr, String key) {
+        int low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int compare = key.compareTo(arr[mid]);
+            if (compare == 0)
+                return mid;
+            else if (compare > 0)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+        return -1; // not found
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=== DICTIONARY SEARCH (Binary Search) ===");
+        System.out.print("Enter word to search: ");
+        String key = sc.next().toLowerCase();
+        int index = binarySearch(words, key);
+        if (index != -1) {
+            System.out.println("Meaning: " + meanings[index]);
+        } else {
+            System.out.println("Word not found in dictionary.");
+        }
+        sc.close();
+    }
+}
